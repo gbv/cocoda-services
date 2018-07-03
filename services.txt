@@ -1,0 +1,3 @@
+jskos-server    https://github.com/gbv/jskos-server.git
+wikidata-jskos	https://github.com/gbv/wikidata-jskos.git
+occurrences-api	https://github.com/gbv/occurrences-api.git
