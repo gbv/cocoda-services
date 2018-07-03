@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 function usage {
-  echo "Usage: $0 <name>"
+  echo "Usage: $0 <name> | all"
   echo "Pulls updates via git and restarts service"
 }
 
@@ -17,4 +17,4 @@ git -C $1 reset --hard origin/master
 ./init.sh $1
 
 # Restart service
-pm2 restart $1
+./start.sh $1

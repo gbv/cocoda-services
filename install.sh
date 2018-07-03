@@ -1,9 +1,8 @@
 #!/bin/bash -e
 
 function usage {
-  echo "Usage: $0 <name> [<git-url>]"
+  echo "Usage: $0 <name> [<git-url>] | all"
   echo "Install and initialize service."
-  echo "Try 'xargs -L 1 ./install.sh < services.txt' to install all."
 }
 
 . utils.sh
