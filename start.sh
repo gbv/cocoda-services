@@ -10,13 +10,10 @@ function usage {
 echo "Start service $1"
 cd $1
 
-if [[ -f server.js ]]; then
-  pm2 describe $1 > /dev/null
-RUNNING=$?
+ECOSYSTEM=ecosystem.config.json
+[[ -f $ECOSYSTEM ]] || error "Missing file $ECOSYSTEM" 
 
-if [ "${RUNNING}" -ne 0 ]; then
-  # FIXME: restart if already running, start otherwise
-  pm2 startOrRestart server.js --name $1
-else
-  error "Don't know how to start service $1"
-fi
+NAME=`node -e "console.log(JSON.parse(require('fs').readFileSync('$ECOSYSTEM')).name)"`
+[[ "$NAME" = $1 ]] || error "Wrong service name in $ECOSYSTEM"
+
+pm2 reload $ECOSYSTEM || pm2 start $ECOSYSTEM

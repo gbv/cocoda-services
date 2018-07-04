@@ -5,6 +5,17 @@ This home directory of user `cocoda` is used to host backend services.
 ## Overview
 
 Services are listed in `services.txt` with their git URL to clone/pull from.
+Each service repository is expected to include a file `ecosystem.config.json`
+like this (see [pm2 documentation] for details):
+
+```json
+{
+  "name": "service-name",
+  "script": "./server.js"
+}
+```
+
+[pm2 documentation]: http://pm2.keymetrics.io/docs/usage/application-declaration/
 
 Each services can be installed into a directory with script `install.sh`.
 The directory name is also used as service name. The install script also
@@ -27,6 +38,7 @@ Clone this repository:
 
 ```bash
 cd /srv/cocoda  # or wherever to put services under
+git init
 git remote add origin https://github.com/gbv/cocoda-services.git 
 git pull origin master
 ```
