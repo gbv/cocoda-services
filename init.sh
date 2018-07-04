@@ -14,9 +14,7 @@ if [[ -f "package.json" ]]; then
   
   echo "Detected Node service"
   npm install
-  if grep --quiet '^ \+build$' package.json; then
-    npm run build
-  fi
+  npm run build || echo "no build script found"
 
 elif [[ -f "cpanfile" ]]; then
   
