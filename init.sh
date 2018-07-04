@@ -21,10 +21,8 @@ if [[ -f "package.json" ]]; then
 elif [[ -f "cpanfile" ]]; then
   
   echo "Detected Perl service"
-  export PERL5LIB=$(pwd)/local/lib/perl5
-  export PERL_LOCAL_LIB_ROOT=$(pwd)/local/lib/perl5
-  export PERL_MM_OPT="INSTALL_BASE=$(pwd)/local"
-  cpanm --installdeps --skip-satisifed --notest .
+  eval $(perl -Mlocal::lib=local)
+  cpanm --installdeps --notest .
 
 else
   error "Unknown service type!"

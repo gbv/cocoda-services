@@ -16,4 +16,8 @@ ECOSYSTEM=ecosystem.config.json
 NAME=`node -e "console.log(JSON.parse(require('fs').readFileSync('$ECOSYSTEM')).name)"`
 [[ "$NAME" = $1 ]] || error "Wrong service name in $ECOSYSTEM"
 
+# reload or start
 pm2 reload $ECOSYSTEM || pm2 start $ECOSYSTEM
+
+# show status
+pm2 list -m | awk "\$1==\"+---\" {P=\$2==\"$1\"} P {print}"
