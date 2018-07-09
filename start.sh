@@ -13,8 +13,12 @@ cd $1
 ECOSYSTEM=ecosystem.config.json
 [[ -f $ECOSYSTEM ]] || error "Missing file $ECOSYSTEM" 
 
-NAME=`node -e "console.log(JSON.parse(require('fs').readFileSync('$ECOSYSTEM')).name)"`
-[[ "$NAME" = $1 ]] || error "Wrong service name in $ECOSYSTEM"
+# add or adjust service name
+SCRIPT="console.log(JSON.stringify(Object.assign(\
+JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'})))"
+
+ECOSYSTEM=ecosystem.config.renamed.json
+node -e "$SCRIPT" > $ECOSYSTEM
 
 # reload or start
 pm2 reload $ECOSYSTEM || pm2 start $ECOSYSTEM
