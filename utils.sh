@@ -8,6 +8,9 @@ if [[ $# -eq 0 ]]; then
   exit
 fi
 
+# remove a trailing slash from each argument
+set -- ${@%/}
+
 [[ "$1" =~ ^[a-z0-9-]+$ ]] || error "invalid service name '$1'"
 
 if [[ "$1" == "all" ]]; then
