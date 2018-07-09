@@ -10,7 +10,7 @@ function usage {
 [[ -d "$1/.git" ]] || error "missing $1/.git"
 
 # Update via git
-git -C $1 fetch origin master
+git -C $1 fetch --tags origin master
 git -C $1 reset --hard origin/master
 
 # Install dependencies
