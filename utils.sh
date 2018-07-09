@@ -8,9 +8,9 @@ if [[ $# -eq 0 ]]; then
   exit
 fi
 
-[[ "$1" =~ ^[a-z-]+$ ]] || error "invalid service name '$1'"
+[[ "$1" =~ ^[a-z0-9-]+$ ]] || error "invalid service name '$1'"
 
 if [[ "$1" == "all" ]]; then
-  xargs -L 1 $0 < services.txt
+  grep -o '^[^#]*' services.txt | xargs -L 1 $0
   exit
 fi

@@ -1,3 +1,5 @@
+# This file lists services to be installed with `./install.sh all`
+
 cocoda          https://github.com/gbv/cocoda.git
 jskos-server    https://github.com/gbv/jskos-server.git
 wikidata-jskos	https://github.com/gbv/wikidata-jskos.git
