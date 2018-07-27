@@ -11,6 +11,7 @@ function usage {
 
 # Update via git
 git -C $1 fetch --tags
+git -C $1 pull
 git -C $1 reset --hard
 
 # Install dependencies
