@@ -12,6 +12,7 @@ function usage {
 # Update via git
 git -C $1 fetch --tags
 git -C $1 fetch --all
+git -C $1 checkout -- package-lock.json # workaround for unwanted changes in package-lock.json
 git -C $1 pull
 git -C $1 reset --hard
 
