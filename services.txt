@@ -4,3 +4,6 @@ cocoda          https://github.com/gbv/cocoda.git
 jskos-server    https://github.com/gbv/jskos-server.git
 wikidata-jskos	https://github.com/gbv/wikidata-jskos.git
 occurrences-api	https://github.com/gbv/occurrences-api.git
+jskos-data      https://github.com/gbv/jskos-data.git 
+jskos-metrics   https://github.com/gbv/jskos-metrics.git
+wikidata-jskos  https://github.com/gbv/wikidata-jskos.git
