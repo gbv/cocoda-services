@@ -12,8 +12,8 @@ function usage {
 # Update via git
 git -C $1 fetch --tags
 git -C $1 fetch --all
-git -C $1 checkout -- package.json # workaround for unwanted changes in package.json
-git -C $1 checkout -- package-lock.json # workaround for unwanted changes in package-lock.json
+git -C $1 checkout -- package.json || true # workaround for unwanted changes in package.json if necessary
+git -C $1 checkout -- package-lock.json || true # workaround for unwanted changes in package-lock.json if necessary
 git -C $1 pull
 git -C $1 reset --hard
 
