@@ -46,3 +46,26 @@ Install all services listed in `services.txt`:
 ./install.sh all
 ```
 
+## Service-Specific Instructions
+
+### jskos-server: Adding Concept Schemes or Concepts
+
+**Note:** This is here for documentation purposes and will be improved and simplified soon!
+
+1. Update kos-registry if necessary. 
+
+1. Update jskos-data if necessary.
+
+1. Navigate to jskos-server's import folder: `cd ~/jskos-server/imports/`
+
+1. Edit the file `assemble-schemes.sh` to include the new concept scheme(s) via URI(s).
+
+1. Run the file: `./assemble-schemes.sh`.
+
+1. For concepts: Add the file with path for the concepts to `concepts.txt`.
+
+1. Return to the parent directory: `cd ..` (or `cd ~/jskos-server/` if you're already somewhere else).
+
+1. Import schemes: `npm run import-batch -- schemes imports/schemes.txt`.
+
+1. For concepts: `npm run import-batch -- concepts imports/concepts.txt`.
