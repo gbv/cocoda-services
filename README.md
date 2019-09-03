@@ -27,10 +27,7 @@ Use `update.sh` to update and restart services (unless updating is broken).
 
 ## Requirements
 
-* git
-* bash
 * [pm2](http://pm2.keymetrics.io/)
-* nodejs (required by pm2 anyway) 
 
 ## Installation
 
