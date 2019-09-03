@@ -10,7 +10,13 @@ function usage {
 echo "Initialize dependencies of $1"
 cd $1
 
-if [[ -f "package.json" ]]; then
+if [[ -f "package-lock.json" ]]; then
+
+  echo "Detected Node service (via package-lock.json)"
+  npm ci
+  npm run build || echo "no build script found"
+
+elif [[ -f "package.json" ]]; then
   
   echo "Detected Node service"
   npm install
