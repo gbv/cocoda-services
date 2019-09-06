@@ -1,9 +1,28 @@
 # This file lists services to be installed with `./install.sh all`
 
-cocoda          https://github.com/gbv/cocoda.git
-jskos-server    https://github.com/gbv/jskos-server.git
-wikidata-jskos	https://github.com/gbv/wikidata-jskos.git
-occurrences-api	https://github.com/gbv/occurrences-api.git
-jskos-data      https://github.com/gbv/jskos-data.git 
-jskos-metrics   https://github.com/gbv/jskos-metrics.git
-wikidata-jskos  https://github.com/gbv/wikidata-jskos.git
+# Cocoda
+# Main Cocoda instance is updated via GitHub releases.
+cocoda-dev              https://github.com/gbv/cocoda.git                               dev
+
+# jskos-server
+jskos-server            https://github.com/gbv/jskos-server.git                         master
+jskos-server-dev        https://github.com/gbv/jskos-server.git                         dev
+jskos-server-ccmapper   https://github.com/gbv/jskos-server.git                         master
+jskos-server-rvk        https://github.com/gbv/jskos-server.git                         master
+
+# other services
+login-server            https://github.com/gbv/login-server.git                         master
+wikidata-jskos          https://github.com/gbv/wikidata-jskos.git                       master
+occurrences-api         https://github.com/gbv/occurrences-api.git                      master
+github-webhook-handler  https://github.com/gbv/github-webhook-handler.git               master
+
+# other repositories
+jskos-data              https://github.com/gbv/jskos-data.git                           master
+kos-registry            https://github.com/gbv/kos-registry.git                         master
+jskos-metrics           https://github.com/gbv/jskos-metrics.git                        master
+
+# KENOM
+cocoda-kenom            https://github.com/gbv/cocoda.git                               master
+jskos-server-kenom      https://github.com/gbv/jskos-server.git                         master
+kenom-label-tool        https://git.gbv.de/repositories/pub/peters/kenom-label-tool.git master
+kenom-mappings          http://git.gbv.de/repositories/pub/voss/kenom-mappings.git/     master
