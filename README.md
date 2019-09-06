@@ -1,6 +1,7 @@
 # cocoda backend services
 
-This home directory of user `cocoda` is used to host backend services.
+This home directory of user `cocoda` is used to host backend services used in
+[project coli-conc](https://coli-conc.gbv.de/).
 
 ## Overview
 
@@ -48,7 +49,9 @@ Install all services listed in `services.txt`:
 
 ## Service-Specific Instructions
 
-### jskos-server: Adding Concept Schemes or Concepts
+[jskos-server]: https://github.com/gbv/jskos-server
+
+### [jskos-server]: Adding Concept Schemes or Concepts
 
 **Note:** This is here for documentation purposes and will be improved and simplified soon!
 
