@@ -9,18 +9,30 @@ function usage {
 
 NAME=$1
 URL=$2
+BRANCH=$3
 
-if [[ -d $1 ]]; then
-  echo "Directory $1 already exists, skipping"
+if [[ -d $NAME ]]; then
+  echo "Directory $NAME already exists, skipping"
   exit
 fi
 
-if [[ -n "$URL" ]]; then
+if [[ -z "$URL" ]]; then
   URL=https://github.com/gbv/$NAME.git
 fi
 
-echo "Install service $1 from $2"
+if [[ -z "$BRANCH" ]]; then
+  BRANCH_TEXT="default branch"
+else
+  BRANCH_TEXT="branch: $BRANCH"
+fi
+echo "Install service $NAME from $URL ($BRANCH_TEXT)"
 
-git clone $2 $1
+git clone $URL $NAME
+if [[ ! -z "$BRANCH" ]]; then
+  git -C $NAME checkout $BRANCH
+fi
 
-./init.sh $1
+./init.sh $NAME
+./start.sh $NAME
+
+echo
