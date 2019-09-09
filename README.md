@@ -37,7 +37,7 @@ Clone this repository:
 ```bash
 cd /srv/cocoda  # or wherever to put services under
 git init
-git remote add origin https://github.com/gbv/cocoda-services.git 
+git remote add origin https://github.com/gbv/cocoda-services.git
 git pull origin master
 ```
 
@@ -51,24 +51,20 @@ Install all services listed in `services.txt`:
 
 [jskos-server]: https://github.com/gbv/jskos-server
 
-### [jskos-server]: Adding Concept Schemes or Concepts
+### [jskos-server]: Adding Concept Schemes
 
-**Note:** This is here for documentation purposes and will be improved and simplified soon!
+1. Add URI of concept scheme to `scripts/jskos-server/scheme-uris.txt`.
 
-1. Update kos-registry if necessary. 
+1. Run `./scripts/import.sh jskos-server schemes`.
 
-1. Update jskos-data if necessary.
+Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically from `kos-registry`.
 
-1. Navigate to jskos-server's import folder: `cd ~/jskos-server/imports/`
+### [jskos-server]: Adding Concepts
 
-1. Edit the file `assemble-schemes.sh` to include the new concept scheme(s) via URI(s).
+1. Add file path to concepts file to `scripts/jskos-server/concepts.txt`.
 
-1. Run the file: `./assemble-schemes.sh`.
+1. Run `./scripts/import.sh jskos-server concepts`.
 
-1. For concepts: Add the file with path for the concepts to `concepts.txt`.
+### [jskos-server]: Reimport Concordances
 
-1. Return to the parent directory: `cd ..` (or `cd ~/jskos-server/` if you're already somewhere else).
-
-1. Import schemes: `npm run import-batch -- schemes imports/schemes.txt`.
-
-1. For concepts: `npm run import-batch -- concepts imports/concepts.txt`.
+Run `./scripts.import.sh jskos-server concordances`.
