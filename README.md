@@ -83,4 +83,7 @@ Cron jobs currently need to be configurated manually.
 
 # kenom mapping statistics
 20 * * * * cd /srv/cocoda/kenom-mappings; make stats
+
+# nightly import of ccmapper recommendations (note: add FTP credentials!)
+00 05 * * * FTP_USER=<ftpuser> FTP_PASS=<ftppass> FTP_HOST=<ftphost> FILE=generated SERVER_PATH=/srv/cocoda/jskos-server-ccmapper SERVER_RESET=yes /srv/cocoda/scripts/import.sh jskos-server-ccmapper mappings > /srv/cocoda/ccmapper-mappings.log
 ```
