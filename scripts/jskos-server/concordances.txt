@@ -1,0 +1,1 @@
+http://coli-conc.gbv.de/concordances/csv/concordances.ndjson

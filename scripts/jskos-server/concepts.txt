@@ -1,0 +1,4 @@
+/home/stefanp/ddc/ddc_23_de_2018-07-04_no-notes.ndjson
+/srv/cocoda/jskos-data/ixtheo/ixtheo-concepts.json
+/srv/cocoda/jskos-data/nomisma/nomisma-concepts.ndjson
+/srv/cocoda/jskos-data/bos/bos-concepts.ndjson
