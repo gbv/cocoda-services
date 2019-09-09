@@ -14,6 +14,7 @@ jskos-server-rvk        https://github.com/gbv/jskos-server.git                 
 login-server            https://github.com/gbv/login-server.git                         master
 wikidata-jskos          https://github.com/gbv/wikidata-jskos.git                       master
 occurrences-api         https://github.com/gbv/occurrences-api.git                      master
+nomisma-reconciliation  https://github.com/gbv/nomisma-reconciliation.git               master
 github-webhook-handler  https://github.com/gbv/github-webhook-handler.git               master
 
 # other repositories
