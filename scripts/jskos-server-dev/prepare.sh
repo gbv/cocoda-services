@@ -1,0 +1,1 @@
+../jskos-server/prepare.sh

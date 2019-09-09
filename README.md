@@ -53,6 +53,8 @@ Install all services listed in `services.txt`:
 
 [jskos-server]: https://github.com/gbv/jskos-server
 
+Note: Instructions relating to jskos-server can be used for jskos-server-dev as well. jskos-server-dev is available as a registry in the [Cocoda dev instance](https://coli-conc.gbv.de/cocoda/dev/), so it can be used as a playground for importing newly converted vocabularies.
+
 ### [jskos-server]: Adding Concept Schemes
 
 1. Add URI of concept scheme to `scripts/jskos-server/scheme-uris.txt`.
