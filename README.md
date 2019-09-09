@@ -72,7 +72,7 @@ Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically 
 Run `./scripts.import.sh jskos-server concordances`. This happens every night via the cron job so it should only be necessary if you want to add a new concordance during the day.
 
 ## Cron Jobs
-Cron jobs current need to be configurated manually.
+Cron jobs currently need to be configurated manually.
 
 ```bash
 # daily reimport of concordances in jskos-server
