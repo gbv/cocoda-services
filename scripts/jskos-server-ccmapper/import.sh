@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $1 -ne "mappings" ]; then
+if [ $1 != "mappings" ]; then
   echo "Error: Only mappings are supported by this instance."
   exit 1
 fi
