@@ -30,6 +30,8 @@ Use `update.sh` to update and restart services (unless updating is broken).
 
 * [pm2](http://pm2.keymetrics.io/)
 
+* [realpath](http://man7.org/linux/man-pages/man1/realpath.1.html)
+
 ## Installation
 
 Clone this repository:
@@ -67,4 +69,18 @@ Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically 
 
 ### [jskos-server]: Reimport Concordances
 
-Run `./scripts.import.sh jskos-server concordances`.
+Run `./scripts.import.sh jskos-server concordances`. This happens every night via the cron job so it should only be necessary if you want to add a new concordance during the day.
+
+## Cron Jobs
+Cron jobs current need to be configurated manually.
+
+```bash
+# daily reimport of concordances in jskos-server
+10 01 * * * ./scripts/import.sh jskos-server concordances
+
+# hourly backup of jskos-server + jskos-server-kenom user mappings
+00 * * * * /srv/cocoda/scripts/backup.sh
+
+# kenom mapping statistics
+20 * * * * cd /srv/cocoda/kenom-mappings; make stats
+```
