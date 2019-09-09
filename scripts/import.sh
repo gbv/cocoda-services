@@ -8,7 +8,7 @@ if [ -z $1 ]; then
   exit 1
 fi
 
-DIR=$(dirname "$0")
+DIR=$(dirname "$(realpath -s "$0")")
 IMPORT_DIR="$DIR/$1/"
 SERVICE_DIR="$DIR/../$1/"
 TYPE=$2
