@@ -79,7 +79,7 @@ Cron jobs currently need to be configurated manually.
 10 01 * * * ./scripts/import.sh jskos-server concordances > /srv/cocoda/logs/jskos-server_concordances.log
 
 # hourly backup of jskos-server + jskos-server-kenom user mappings
-00 * * * * /srv/cocoda/scripts/backup.sh >> /srv/cocoda/backup.log
+00 * * * * /srv/cocoda/scripts/backup.sh >> /srv/cocoda/logs/backup.log
 
 # kenom mapping statistics
 20 * * * * cd /srv/cocoda/kenom-mappings; make stats
