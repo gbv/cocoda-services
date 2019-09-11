@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR=$(dirname "$(realpath -s "$0")")
-KOS="$DIR/../../kos-registry/all.ndjson"
+KOS="$DIR/../../kos-registry/kos-registry.ndjson"
 SOURCE_FILE="$DIR/scheme-uris.txt"
 TARGET_FILE="$DIR/schemes.ndjson"
 
