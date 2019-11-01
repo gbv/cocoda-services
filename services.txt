@@ -3,6 +3,8 @@
 # Cocoda
 # Main Cocoda instance is updated via GitHub releases.
 cocoda-dev              https://github.com/gbv/cocoda.git                               dev
+cocoda-rvk              https://github.com/gbv/cocoda.git                               master
+cocoda-wikidata         https://github.com/gbv/cocoda.git                               master
 
 # jskos-server
 jskos-server            https://github.com/gbv/jskos-server.git                         master
