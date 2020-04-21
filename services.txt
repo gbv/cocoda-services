@@ -29,3 +29,7 @@ cocoda-kenom            https://github.com/gbv/cocoda.git                       
 jskos-server-kenom      https://github.com/gbv/jskos-server.git                         master
 kenom-label-tool        https://git.gbv.de/repositories/pub/peters/kenom-label-tool.git master
 kenom-mappings          http://git.gbv.de/repositories/pub/voss/kenom-mappings.git/     master
+
+# FSO
+cocoda-fso              https://github.com/gbv/cocoda.git                               master
+jskos-server-fso        https://github.com/gbv/jskos-server.git                         master
