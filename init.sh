@@ -19,7 +19,7 @@ if [[ -f "package-lock.json" ]]; then
 elif [[ -f "package.json" ]]; then
   
   echo "Detected Node service"
-  npm install
+  npm install --no-package-lock
   npm run build || echo "no build script found"
 
 elif [[ -f "cpanfile" ]]; then
