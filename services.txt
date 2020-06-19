@@ -3,6 +3,7 @@
 # Cocoda
 # Main Cocoda instance is updated via GitHub releases.
 cocoda-dev              https://github.com/gbv/cocoda.git                               dev
+cocoda-test             https://github.com/gbv/cocoda.git                               test
 cocoda-rvk              https://github.com/gbv/cocoda.git                               master
 cocoda-wikidata         https://github.com/gbv/cocoda.git                               master
 
