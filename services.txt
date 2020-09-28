@@ -12,6 +12,7 @@ jskos-server            https://github.com/gbv/jskos-server.git                 
 jskos-server-dev        https://github.com/gbv/jskos-server.git                         dev
 jskos-server-ccmapper   https://github.com/gbv/jskos-server.git                         master
 jskos-server-rvk        https://github.com/gbv/jskos-server.git                         master
+jskos-server-bartoc     https://github.com/gbv/jskos-server.git                         import-refactor
 
 # other services
 login-server            https://github.com/gbv/login-server.git                         master
