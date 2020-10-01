@@ -13,6 +13,11 @@ jskos-server-dev        https://github.com/gbv/jskos-server.git                 
 jskos-server-ccmapper   https://github.com/gbv/jskos-server.git                         master
 jskos-server-rvk        https://github.com/gbv/jskos-server.git                         master
 jskos-server-bartoc     https://github.com/gbv/jskos-server.git                         import-refactor
+jskos-server-bartoc-dev https://github.com/gbv/jskos-server.git                         import-refactor
+
+# BARTOC web interface
+bartoc.org              https://github.com/gbv/bartoc.org.git                           main
+bartoc.dev              https://github.com/gbv/bartoc.org.git                           dev
 
 # other services
 login-server            https://github.com/gbv/login-server.git                         master
