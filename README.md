@@ -135,6 +135,8 @@ This is more complicated because it requires downloading and unzipping the relea
 }
 ```
 
+After editing `config.json`, the service needs to be restarted: `pm2 restart github-webhook-handler`
+
 In both cases, a webhook has to be configured in GitHub. Go to Settings -> Webhooks and add a new webhook:
 
 - Payload URL: `https://coli-conc.gbv.de/github-webhook/` (always)
