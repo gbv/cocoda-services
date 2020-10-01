@@ -89,3 +89,56 @@ Cron jobs currently need to be configurated manually.
 # nightly import of ccmapper recommendations (note: add FTP credentials!)
 00 05 * * * FTP_USER=<ftpuser> FTP_PASS=<ftppass> FTP_HOST=<ftphost> FILE=generated SERVER_PATH=/srv/cocoda/jskos-server-ccmapper SERVER_RESET=yes /srv/cocoda/scripts/import.sh jskos-server-ccmapper mappings > /srv/cocoda/logs/jskos-server-ccmapper_mappings.log
 ```
+
+## Automatic Deployment via GitHub Webhooks
+We are using [github-webhook-handler](https://github.com/gbv/github-webhook-handler) to handle updates from GitHub via webhooks. The webhooks and respective actions are configured in `/srv/cocoda/github-webhook-handler/config.json` (not included in the repository). Please refer to the documentation and the configuration file on how to configure the webhooks. The file looks like this:
+
+```json
+{
+  "port": 2999,
+  "secret": "a secret",
+  "webhooks": [
+
+  ]
+}
+```
+
+In `webhooks`, all the specific webhooks are configured. There are two main ways to use this for deployment:
+
+### Update via push event on specific branch
+This is the easiest way to update a service. Example webhook configuration:
+
+```json
+{
+  "repository": "gbv/login-server",
+  "path": "/srv/cocoda/",
+  "command": "./update.sh login-server",
+  "ref": "refs/heads/master",
+  "event": "push"
+}
+```
+
+### Update via release event
+This is more complicated because it requires downloading and unzipping the release. Example webhook configuration for the Cocoda release instance:
+
+```json
+{
+  "repository": "gbv/cocoda",
+  "path": "/srv/cocoda/cocoda/",
+  "command": "wget $DOWNLOAD -O $VERSION.zip; unzip $VERSION.zip -d $VERSION-temp; mv $VERSION-temp/cocoda/ $VERSION; rm $VERSION.zip; rm -r $VERSION-temp; cp app/cocoda.json $VERSION/cocoda.json; rm app; ln -sf $VERSION app; ./updateBuilds.sh",
+  "event": "release",
+  "action": "published",
+  "env": {
+    "body.release.assets[0].browser_download_url": "DOWNLOAD",
+    "body.release.tag_name": "VERSION"
+  }
+}
+```
+
+In both cases, a webhook has to be configured in GitHub. Go to Settings -> Webhooks and add a new webhook:
+
+- Payload URL: `https://coli-conc.gbv.de/github-webhook/` (always)
+- Content type: `application/json` (always)
+- Secret: refer to the configuration file on the server
+- SSL verification: enabled
+- Which events: either `push` or select and check `Releases`
