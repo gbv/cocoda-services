@@ -19,13 +19,16 @@ jskos-server-bartoc-dev https://github.com/gbv/jskos-server.git                 
 bartoc.org              https://github.com/gbv/bartoc.org.git                           main
 bartoc.dev              https://github.com/gbv/bartoc.org.git                           dev
 
+# coli-rich
+coli-rich               https://github.com/gbv/coli-rich.git                            main
+coli-rich-dev           https://github.com/gbv/coli-rich.git                            dev
+
 # other services
 login-server            https://github.com/gbv/login-server.git                         master
 wikidata-jskos          https://github.com/gbv/wikidata-jskos.git                       master
 occurrences-api         https://github.com/gbv/occurrences-api.git                      master
 nomisma-reconciliation  https://github.com/gbv/nomisma-reconciliation.git               master
 github-webhook-handler  https://github.com/gbv/github-webhook-handler.git               master
-coli-rich               https://github.com/gbv/coli-rich.git                            master
 
 # other repositories
 jskos-data              https://github.com/gbv/jskos-data.git                           master
