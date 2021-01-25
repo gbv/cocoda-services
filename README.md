@@ -1,11 +1,10 @@
 # cocoda backend services
 
-This home directory of user `cocoda` is used to host backend services used in
-[project coli-conc](https://coli-conc.gbv.de/).
+> backend services used in [project coli-conc](https://coli-conc.gbv.de/)
 
-## Overview
+This repository contains the home directory of user `cocoda` to host services
+listed in `services.txt` with their git URL to clone/pull from.
 
-Services are listed in `services.txt` with their git URL to clone/pull from.
 Each service repository is expected to include a file `ecosystem.config.json`
 like this (see [pm2 documentation] for details):
 
@@ -18,21 +17,19 @@ like this (see [pm2 documentation] for details):
 
 [pm2 documentation]: http://pm2.keymetrics.io/docs/usage/application-declaration/
 
-Each services can be installed into a directory with script `install.sh`.
-The directory name is also used as service name. The install script also
-calls `init.sh` to initialize dependencies (and build the service, if needed).
+## Table of Contents
 
-To start or restart a service, call `start.sh`.
+* [Install](#install)
+* [Usage](#usage)
+* [Service-Specific Instructions](#service-specific-instructions)
+* [Cron Jobs](#cron-jobs)
+* [Automatic Deployments](#automatic-deployment)
+* [Contributing](#contributing)
+* [License](#license)
 
-Use `update.sh` to update and restart services (unless updating is broken).
+## Install
 
-## Requirements
-
-* [pm2](http://pm2.keymetrics.io/)
-
-* [realpath](http://man7.org/linux/man-pages/man1/realpath.1.html)
-
-## Installation
+Requires [pm2](http://pm2.keymetrics.io/) and [realpath](http://man7.org/linux/man-pages/man1/realpath.1.html).
 
 Clone this repository:
 
@@ -48,6 +45,22 @@ Install all services listed in `services.txt`:
 ```bash
 ./install.sh all
 ```
+
+Enable logfile rotation to avoid full disk:
+
+```bash
+pm2 install pm2-logrotate
+```
+
+## Usage
+
+Each services can be installed into a directory with script `install.sh`.
+The directory name is also used as service name. The install script also
+calls `init.sh` to initialize dependencies (and build the service, if needed).
+
+To start or restart a service, call `start.sh`.
+
+Use `update.sh` to update and restart services (unless updating is broken).
 
 ## Service-Specific Instructions
 
@@ -90,7 +103,7 @@ Cron jobs currently need to be configurated manually.
 00 05 * * * FTP_USER=<ftpuser> FTP_PASS=<ftppass> FTP_HOST=<ftphost> FILE=generated SERVER_PATH=/srv/cocoda/jskos-server-ccmapper SERVER_RESET=yes /srv/cocoda/scripts/import.sh jskos-server-ccmapper mappings > /srv/cocoda/logs/jskos-server-ccmapper_mappings.log
 ```
 
-## Automatic Deployment via GitHub Webhooks
+## Automatic Deployment
 We are using [github-webhook-handler](https://github.com/gbv/github-webhook-handler) to handle updates from GitHub via webhooks. The webhooks and respective actions are configured in `/srv/cocoda/github-webhook-handler/config.json` (not included in the repository). Please refer to the documentation and the configuration file on how to configure the webhooks. The file looks like this:
 
 ```json
@@ -144,3 +157,11 @@ In both cases, a webhook has to be configured in GitHub. Go to Settings -> Webho
 - Secret: refer to the configuration file on the server
 - SSL verification: enabled
 - Which events: either `push` or select and check `Releases`
+
+## Contributing
+
+See <https://github.com/gbv/cocoda-services/>.
+
+## License
+
+Usage not restricted by copyright (Unlicense).
