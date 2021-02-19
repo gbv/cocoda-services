@@ -12,10 +12,10 @@ if [[ ! -d "$1" ]]; then
   exit
 fi
 
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-echo -ne "$1\t$BRANCH\t"
 cd $1
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo -ne "$1\t$BRANCH\t"
 
 if [[ -f "package.json" ]]; then
   echo -ne "node\t"
