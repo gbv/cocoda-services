@@ -33,5 +33,5 @@ fi
 if [[ -f ".travis.yml" ]]; then
   error ".travis.yml is deprecated, use GitHub Action instead!"
 else
-  [[ ! -f ".github/workflows/test.yml" ]] && error "missing .github/workflows/test.yml"
+  [[ ! -f ".github/workflows/test.yml" && ! -f ".github/workflows/test-and-build.yml" ]] && error "missing .github/workflows/test{,-and-build}.yml"
 fi
