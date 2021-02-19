@@ -162,6 +162,8 @@ In both cases, a webhook has to be configured in GitHub. Go to Settings -> Webho
 
 See <https://github.com/gbv/cocoda-services/>.
 
+The script `code-analysis.sh` can be used for static code analysis as quality control.
+
 ## License
 
 Usage not restricted by copyright (Unlicense).
