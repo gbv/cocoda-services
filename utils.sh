@@ -1,5 +1,13 @@
+RED='\033[0;31m'
+NC='\033[0m'
+
 function error {
-  echo "$1" >&2	  # message to STDERR
+  # message to STDERR
+  if [ -t 1 ]; then
+    printf "$RED$1$NC\n" >&2	
+  else
+    echo "$1" >&2	
+  fi	  
   exit "${2:-1}"  # exit code as specified or 1
 }
 

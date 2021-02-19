@@ -5,14 +5,10 @@ function usage {
   echo "Analyze source code of service in directory <name>. Expects service to be initialized."
 }
 
-function warn {
-  echo "  $1!" 1>&2
-}
-
 . utils.sh
 
 if [[ ! -d "$1" ]]; then
-  warn "$1 is not installed"
+  error "$1 is not installed"
   exit
 fi
 
@@ -25,7 +21,7 @@ if [[ -f "package.json" ]]; then
   echo -ne "node\t"
   jq -r .version package.json
 
-  [[ ! -f "package-lock.json" ]] && warn "Missing package-lock.json"
+  [[ ! -f "package-lock.json" ]] && error "Missing package-lock.json"
 
 elif [[ -f "cpanfile" ]]; then
   echo "Perl"
@@ -35,7 +31,7 @@ else
 fi
 
 if [[ -f ".travis.yml" ]]; then
-  warn ".travis.yml is depreacted"
+  error ".travis.yml is depreacted"
 else
-  [[ ! -f ".github/workflows/test.yml" ]] && warn "missing .github/workflows/test.yml"
+  [[ ! -f ".github/workflows/test.yml" ]] && error "missing .github/workflows/test.yml"
 fi
