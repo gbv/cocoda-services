@@ -45,3 +45,13 @@ kenom-mappings          http://git.gbv.de/repositories/pub/voss/kenom-mappings.g
 # FSO
 cocoda-fso              https://github.com/gbv/cocoda.git                               master
 jskos-server-fso        https://github.com/gbv/jskos-server.git                         master
+
+
+# Libraries, only installed for testing
+jskos-validate          https://github.com/gbv/jskos-validate.git                       dev
+jskos-cli               https://github.com/gbv/jskos-cli.git                            dev
+jskos-tools             https://github.com/gbv/jskos-tools.git                          dev
+login-client            https://github.com/gbv/login-client.git                         dev
+skos2jskos              https://github.com/gbv/skos2jskos.git                           master
+cocoda-sdk              https://github.com/gbv/cocoda-sdk.git                           dev
+coli-rich               https://github.com/gbv/coli-rich.git                            main
