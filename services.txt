@@ -47,6 +47,8 @@ kenom-mappings          http://git.gbv.de/repositories/pub/voss/kenom-mappings.g
 cocoda-fso              https://github.com/gbv/cocoda.git                               master
 jskos-server-fso        https://github.com/gbv/jskos-server.git                         master
 
+# API
+picasru-api             https://github.com/gbv/picasru-api.git                          main
 
 # Libraries, only installed for testing
 jskos-validate          https://github.com/gbv/jskos-validate.git                       dev
