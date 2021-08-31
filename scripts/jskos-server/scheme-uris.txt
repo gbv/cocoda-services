@@ -8,3 +8,5 @@ http://bartoc.org/en/node/1940
 http://bartoc.org/en/node/313
 http://bartoc.org/en/node/15
 http://bartoc.org/en/node/459
+http://bartoc.org/en/node/454
+http://bartoc.org/en/node/18536
