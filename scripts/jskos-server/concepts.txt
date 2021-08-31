@@ -2,3 +2,5 @@
 /srv/cocoda/jskos-data/ixtheo/ixtheo.ndjson
 /srv/cocoda/jskos-data/nomisma/nomisma-concepts.ndjson
 /srv/cocoda/jskos-data/bos/bos-concepts.ndjson
+/srv/cocoda/jskos-data/nsk/fachgruppen.ndjson
+/srv/cocoda/jskos-data/nsk/sachschluessel.ndjson
