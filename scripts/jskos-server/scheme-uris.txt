@@ -18,3 +18,4 @@ http://bartoc.org/en/node/1043
 http://bartoc.org/en/node/18928
 http://bartoc.org/en/node/20049
 http://bartoc.org/en/node/1232
+https://bartoc.org/en/node/520
