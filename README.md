@@ -17,15 +17,11 @@ like this (see [pm2 documentation] for details):
 
 [pm2 documentation]: http://pm2.keymetrics.io/docs/usage/application-declaration/
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-- [Table of Contents](#table-of-contents)
 - [Install](#install)
 - [Usage](#usage)
 - [Service-Specific Instructions](#service-specific-instructions)
-  - [[jskos-server]: Adding Concept Schemes](#jskos-server-adding-concept-schemes)
-  - [[jskos-server]: Adding Concepts](#jskos-server-adding-concepts)
-  - [[jskos-server]: Concordances](#jskos-server-concordances)
 - [Cron Jobs](#cron-jobs)
 - [Automatic Deployment](#automatic-deployment)
   - [Update via push event on specific branch](#update-via-push-event-on-specific-branch)
@@ -74,7 +70,7 @@ Use `update.sh` to update and restart services (unless updating is broken).
 
 Note: Instructions relating to jskos-server can be used for jskos-server-dev as well. jskos-server-dev is available as a registry in the [Cocoda dev instance](https://coli-conc.gbv.de/cocoda/dev/), so it can be used as a playground for importing newly converted vocabularies.
 
-### [jskos-server]: Adding Concept Schemes
+### [jskos-server]: Adding Concept Schemes <!-- omit in toc -->
 
 Most of the concept scheme data is taken from the latest BARTOC dump under `/srv/cocoda/bartoc.org/data/dumps/latest.ndjson`. To add a new concept scheme from BARTOC:
 
@@ -88,7 +84,7 @@ In the long term, concept schemes will be loaded from BARTOC directly.
 
 If you need to add a custom concept scheme that is not (yet) in BARTOC, add the path to the `.json` or `.ndjson` file to `scripts/jskos-server/schemes.txt`.
 
-### [jskos-server]: Adding Concepts
+### [jskos-server]: Adding Concepts <!-- omit in toc -->
 
 The source of truth for concept data is in [jskos-data](https://github.com/gbv/jskos-data). That repository is initialized under `/srv/cocoda/jskos-data/` and will need to be updated manually. To add new concept data to jskos-server:
 
@@ -98,7 +94,7 @@ The source of truth for concept data is in [jskos-data](https://github.com/gbv/j
 
 <!-- TODO: How to do a partial import? -->
 
-### [jskos-server]: Concordances
+### [jskos-server]: Concordances <!-- omit in toc -->
 
 Originally, concordances were imported similarly to concept schemes and concepts above. However, as of 2021, the source of truth for concordances and mappings will be the jskos-server database that is hosted under https://coli-conc.gbv.de/api/. Imports of new mappings and concordances need to be performed manually for that instance:
 
