@@ -19,13 +19,19 @@ like this (see [pm2 documentation] for details):
 
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Service-Specific Instructions](#service-specific-instructions)
-* [Cron Jobs](#cron-jobs)
-* [Automatic Deployments](#automatic-deployment)
-* [Contributing](#contributing)
-* [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Install](#install)
+- [Usage](#usage)
+- [Service-Specific Instructions](#service-specific-instructions)
+  - [[jskos-server]: Adding Concept Schemes](#jskos-server-adding-concept-schemes)
+  - [[jskos-server]: Adding Concepts](#jskos-server-adding-concepts)
+  - [[jskos-server]: Concordances](#jskos-server-concordances)
+- [Cron Jobs](#cron-jobs)
+- [Automatic Deployment](#automatic-deployment)
+  - [Update via push event on specific branch](#update-via-push-event-on-specific-branch)
+  - [Update via release event](#update-via-release-event)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Install
 
@@ -70,29 +76,49 @@ Note: Instructions relating to jskos-server can be used for jskos-server-dev as 
 
 ### [jskos-server]: Adding Concept Schemes
 
-1. Add URI of concept scheme to `scripts/jskos-server/scheme-uris.txt`.
+Most of the concept scheme data is taken from the latest BARTOC dump under `/srv/cocoda/bartoc.org/data/dumps/latest.ndjson`. To add a new concept scheme from BARTOC:
 
-1. Run `./scripts/import.sh jskos-server schemes`.
+1. Add the BARTOC URI of the concept scheme to `scripts/jskos-server/scheme-uris.txt`.
+
+2. Run `./scripts/import.sh jskos-server schemes`.
 
 Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically from `kos-registry`.
 
+In the long term, concept schemes will be loaded from BARTOC directly.
+
+If you need to add a custom concept scheme that is not (yet) in BARTOC, add the path to the `.json` or `.ndjson` file to `scripts/jskos-server/schemes.txt`.
+
 ### [jskos-server]: Adding Concepts
+
+The source of truth for concept data is in [jskos-data](https://github.com/gbv/jskos-data). That repository is initialized under `/srv/cocoda/jskos-data/` and will need to be updated manually. To add new concept data to jskos-server:
 
 1. Add file path to concepts file to `scripts/jskos-server/concepts.txt`.
 
-1. Run `./scripts/import.sh jskos-server concepts`.
+1. Run `./scripts/import.sh jskos-server concepts`. This will reimport ALL the concepts for all concept schemes, so it will take a while.
 
-### [jskos-server]: Reimport Concordances
+<!-- TODO: How to do a partial import? -->
 
-Run `./scripts.import.sh jskos-server concordances`. This happens every night via the cron job so it should only be necessary if you want to add a new concordance during the day.
+### [jskos-server]: Concordances
+
+Originally, concordances were imported similarly to concept schemes and concepts above. However, as of 2021, the source of truth for concordances and mappings will be the jskos-server database that is hosted under https://coli-conc.gbv.de/api/. Imports of new mappings and concordances need to be performed manually for that instance:
+
+```bash
+# go into the instance's folder
+cd /srv/cocoda/jskos-server
+# import concordance metadata (note that if the metadata contains valid distribution data for the mappings, the mappings will also be imported in this step!)
+npm run import -- concordances /path/or/url/to/concordance/data.json
+# import mappings (if necessary)
+npm run import -- mappings /path/or/url/to/mappings.ndjson
+# in case mappings from a certain concordance need to be deleted first (note that only the mappings, not the metadata, is removed, and that it will ask for confirmation; to delete the metadata as well, remove the `-c` from the command)
+npm run reset -- -c http://coli-conc.gbv.de/concordances/my_concordance
+```
+
+Also refer to [jskos-server]'s data import section in the README [here](https://github.com/gbv/jskos-server#data-import).
 
 ## Cron Jobs
 Cron jobs currently need to be configurated manually.
 
 ```bash
-# daily reimport of concordances in jskos-server
-10 01 * * * ./scripts/import.sh jskos-server concordances > /srv/cocoda/logs/jskos-server_concordances.log
-
 # hourly backup of jskos-server + jskos-server-kenom user mappings
 00 * * * * /srv/cocoda/scripts/backup.sh >> /srv/cocoda/logs/backup.log
 
