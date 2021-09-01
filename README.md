@@ -127,6 +127,13 @@ Cron jobs currently need to be configurated manually.
 
 # nightly import of ccmapper recommendations (note: add FTP credentials!)
 00 05 * * * FTP_USER=<ftpuser> FTP_PASS=<ftppass> FTP_HOST=<ftphost> FILE=generated SERVER_PATH=/srv/cocoda/jskos-server-ccmapper SERVER_RESET=yes /srv/cocoda/scripts/import.sh jskos-server-ccmapper mappings > /srv/cocoda/logs/jskos-server-ccmapper_mappings.log
+
+# nightly dump of BARTOC.org
+00 04 * * * cd /srv/cocoda/bartoc.org; npm run dump update
+10 04 * * * cd jskos-server-bartoc-dev/; npm run import schemes ../bartoc.org/data/dumps/latest.ndjson
+
+# nightly stats of coli-rich
+05 03 * * * cd /srv/cocoda/coli-rich/rvk2bk; ./stats.sh >> stats.ndjson
 ```
 
 ## Automatic Deployment
