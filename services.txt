@@ -22,6 +22,7 @@ bartoc.dev              https://github.com/gbv/bartoc.org.git                   
 # coli-rich
 coli-rich               https://github.com/gbv/coli-rich.git                            main
 coli-rich-dev           https://github.com/gbv/coli-rich.git                            dev
+coli-rich-scripts       https://github.com/gbv/coli-rich-scripts.git                    main
 
 # other services
 login-server            https://github.com/gbv/login-server.git                         master
