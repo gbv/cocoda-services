@@ -10,7 +10,7 @@
 /srv/cocoda/jskos-data/thema/thema-concepts-1.4.ndjson
 /srv/cocoda/jskos-data/ssg/ssg-concepts.ndjson
 /srv/cocoda/jskos-data/sdnb/sdnb-concepts.ndjson
-/srv/cocoda/jskos-data/dfg-systematik/dfg.concepts.ndjson
+/srv/cocoda/jskos-data/dfg/dfg-2020.concepts.ndjson
 /srv/cocoda/jskos-data/msc2010/msc2010.ndjson
 /srv/cocoda/jskos-data/msc2020/msc2020-concepts.ndjson
 /srv/cocoda/jskos-data/fos/fos-concepts.ndjson
