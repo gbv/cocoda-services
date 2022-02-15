@@ -78,7 +78,7 @@ Most of the concept scheme data is taken from the latest BARTOC dump under `/srv
 
 2. Run `./scripts/import.sh jskos-server schemes`.
 
-Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically from `kos-registry`.
+Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically from the latest BARTOC dump.
 
 In the long term, concept schemes will be loaded from BARTOC directly.
 
