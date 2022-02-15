@@ -35,7 +35,6 @@ coli-ana-dev            https://github.com/gbv/coli-ana.git                     
 
 # other repositories
 jskos-data              https://github.com/gbv/jskos-data.git                           master
-kos-registry            https://github.com/gbv/kos-registry.git                         master
 jskos-metrics           https://github.com/gbv/jskos-metrics.git                        master
 
 # KENOM
