@@ -14,3 +14,4 @@
 /srv/cocoda/jskos-data/msc2010/msc2010.ndjson
 /srv/cocoda/jskos-data/msc2020/msc2020-concepts.ndjson
 /srv/cocoda/jskos-data/fos/fos-concepts.ndjson
+/srv/cocoda/jskos-data/bc/bc-concepts.ndjson
