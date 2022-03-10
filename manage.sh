@@ -7,8 +7,8 @@
 # - Support other data like concordances?
 
 function usage {
-  cat << EOF
-Usage: ./manage.sh <command> [<vocabulary filter>]
+  echo "
+Usage: $0 <command> [<vocabulary filter>]
 
 Offers easy importing of vocabularies into jskos-server instances via a list in data.txt.
 NOTE: This is still experimental. Use with caution.
@@ -19,7 +19,13 @@ Commands:
 
 <vocabulary filter> can be given to filter the end of the second column in data.txt.
 Note that reimport currently only works if the scheme is given as a BARTOC URI.
-EOF
+
+Examples:
+  $0 import                   # Imports all vocabularies in data.txt
+  $0 import node/18797        # Imports IxTheo
+  $0 reimport                 # Resets and imports all vocabularies in data.txt; requires user confirmation
+  $0 reimport node/18797      # Resets IxTheo and imports it again
+"
 }
 
 if [[ $# -eq 0 ]]; then
