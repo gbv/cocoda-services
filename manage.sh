@@ -79,6 +79,9 @@ function handler {
       BASE_URL="http://localhost:$PORT"
     fi
 
+    # Remove leading/trailing " if necessary
+    BASE_URL="${BASE_URL%\"}"
+    BASE_URL="${BASE_URL#\"}"
     # Remove trailing slash
     BASE_URL=$(echo ${BASE_URL%/})
   }
