@@ -11,16 +11,23 @@
 
 jskos-server    http://bartoc.org/en/node/18797     jskos-data/ixtheo/ixtheo.ndjson
 jskos-server    http://bartoc.org/en/node/1822      jskos-data/nomisma/nomisma-concepts.ndjson
-jskos-server    http://bartoc.org/en/node/730       jskos-data/bos/bos-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/20298     jskos-data/nsk/fachgruppen.ndjson jskos-data/nsk/sachschluessel.ndjson
-jskos-server    http://bartoc.org/en/node/1094      jskos-data/oefos/oefos.concepts.ndjson
 jskos-server    http://bartoc.org/en/node/18920     jskos-data/hochschulfaechersystematik/faechersystematik.concepts.ndjson
 jskos-server    http://bartoc.org/en/node/1043      jskos-data/thema/thema-concepts-1.4.ndjson
 jskos-server    http://bartoc.org/en/node/18928     jskos-data/ssg/ssg-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/1232      jskos-data/nomenclature/nomenclature.concepts.ndjson
 jskos-server    http://bartoc.org/en/node/520       jskos-data/dfg/dfg-2020.concepts.ndjson
+
+jskos-server    http://bartoc.org/en/node/730       jskos-data/bos/bos-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/1986      jskos-data/mv/mv-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/1042      jskos-data/fos/fos-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/1094      jskos-data/oefos/oefos-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/18915     jskos-data/zdb-fgs/zdb-fgs-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/20400     jskos-data/bc/bc-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/20404     jskos-data/retrohab/retrohab-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/20405     jskos-data/gessner/gessner-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/20406     jskos-data/brunfels/brunfels-concepts.ndjson
+jskos-server    http://bartoc.org/en/node/20407     jskos-data/thuana/thuana-concepts.ndjson
 
 # DDC German
 # TODO: Use jskos-data path if possible
