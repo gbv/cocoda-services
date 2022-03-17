@@ -52,19 +52,41 @@ if [[ "$RESET" == "true" ]] && [[ -z "$FILTER" ]]; then
   read -p "Are you sure you want to reset all vocabularies? " -r
   if [[ ! $REPLY =~ ^[Yy]$ ]]
   then
-    exit 1
+    exit 0
   fi
 fi
 
 
 function handler {
+  # TODO: How can I remove these functions from handler? If they are defined outside of it, they won't be available due to how we call it (see last line).
+  ok() {
+    echo "📗 $@"
+  }
+  warn() {
+    echo "📙 $@"
+  }
+  error() {
+    echo "📕 $@"
+  }
+  # Logs based on condition
+  # Parameter 1: Condition (usually $?)
+  # Parameter 2: Success string
+  # Parameter 3: Failure string
+  didSucceed () {
+    echo
+    if [[ $1 -eq 0 ]]; then
+      ok $2
+    else
+      warn $3
+    fi
+  }
   # baseUrl will be in BASE_URL
   function getBaseUrl {
     if ! command -v jq &> /dev/null
     then
       BASE_URL=""
       echo
-      echo "!!! WARNING: jq could not be found; will not import vocabulary. Run script with -f to import anyway. !!!"
+      warn "!!! WARNING: jq could not be found; will not import vocabulary. Run script with -f to import anyway. !!!"
       exit
     fi
 
@@ -95,6 +117,8 @@ function handler {
   # TODO: This works only if scheme is given as BARTOC URI, but it should work for all cases.
   if [[ "$RESET" == "true" ]]; then
     yes | $JSKOS_SERVER/bin/reset.js -s $SCHEME
+    didSucceed $? "Concept data was removed from jskos-server." "Concept data could not be removed from jskos-server."
+    echo
   fi
 
   # Load scheme data from BARTOC if a BARTOC URI is given
@@ -103,6 +127,8 @@ function handler {
     SCHEME=https://bartoc.org/api/data?uri=$SCHEME
   fi
   $JSKOS_SERVER/bin/import.js scheme $SCHEME
+  didSucceed $? "Vocabulary metadata was imported into jskos-server." "Import of vocabulary metadata into jskos-server failed."
+  echo
 
   # TODO: Check if concept data exists already; if yes, stop here.
   if [[ "$FORCE" == "false" ]] && [[ "$RESET" == "false" ]] && [[ ! -z $SCHEME_URI ]]
@@ -110,8 +136,7 @@ function handler {
     getBaseUrl $JSKOS_SERVER
     CONCEPTS_LENGTH=$(curl -s "$BASE_URL/voc?uri=$SCHEME_URI" | jq '.[0] | .concepts | length')
     if [[ "$CONCEPTS_LENGTH" == "1" ]]; then
-      echo
-      echo "Concept data for $SCHEME_URI already exists. Run script with -f to import anyway."
+      warn "Concept data for $SCHEME_URI already exists. Run script with -f to import anyway."
       exit
     fi
   fi
@@ -120,9 +145,10 @@ function handler {
   for CONCEPTS in "${@:2}"
   do
     $JSKOS_SERVER/bin/import.js concepts $CONCEPTS
+    didSucceed $? "Concept data was imported into jskos-server." "Import of concept data into jskos-server failed."
+    echo
   done
 
-  echo
 }
 
 export -f handler
