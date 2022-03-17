@@ -8,28 +8,28 @@
 
 function usage {
   echo "
-Usage: $0 [-d data.txt] [-f] [-r] [-g <vocabulary filter>]
+Usage: $0 [-d vocabularies.txt] [-f] [-r] [-g <vocabulary filter>]
 
-Offers easy importing of vocabularies into jskos-server instances via a list in data.txt.
+Offers easy importing of vocabularies into jskos-server instances via a list in vocabularies.txt.
 NOTE: This is still experimental. Use with caution.
 
 Options:
-  -d    Specify the data which is used for import; defaults to data.txt
+  -d    Specify the data which is used for import; defaults to vocabularies.txt
   -f    Force import even if vocabulary data already exists
   -r    Reset a vocabulary's concept data before importing
-  -g    A grep filter used on data.txt
+  -g    A grep filter used on vocabularies.txt
 
 Note that -r currently only works if the scheme is given as a BARTOC URI.
 
 Examples:
-  $0                    # Imports all vocabularies in data.txt (ignores concepts if already exist)
+  $0                    # Imports all vocabularies in vocabularies.txt (ignores concepts if already exist)
   $0 -g node/18797      # Imports IxTheo (ignores concepts if already exist)
   $0 -g node/18797 -f   # Imports IxTheo, including concepts
   $0 -g node/18797 -r   # Imports IxTheo, resets its concepts, then reimports concepts
 "
 }
 
-DATAFILE="data.txt"
+DATAFILE="vocabularies.txt"
 FORCE="false"
 RESET="false"
 FILTER=""
