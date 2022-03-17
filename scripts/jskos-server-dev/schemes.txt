@@ -1,1 +1,0 @@
-/srv/cocoda/scripts/jskos-server-dev/schemes.ndjson

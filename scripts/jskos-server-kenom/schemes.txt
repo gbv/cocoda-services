@@ -1,3 +1,0 @@
-/srv/cocoda/kenom-mappings/schemes.ndjson
-/srv/cocoda/kenom-mappings/muenzmeister-alt/scheme.json
-/srv/cocoda/scripts/jskos-server-kenom/schemes.ndjson

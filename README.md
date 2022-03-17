@@ -67,36 +67,28 @@ Use `update.sh` to update and restart services (unless updating is broken).
 ## Service-Specific Instructions
 
 [jskos-server]: https://github.com/gbv/jskos-server
+[jskos-data]: https://github.com/gbv/jskos-data
+[BARTOC]: https://bartoc.org
 
 Note: Instructions relating to jskos-server can be used for jskos-server-dev as well. jskos-server-dev is available as a registry in the [Cocoda dev instance](https://coli-conc.gbv.de/cocoda/dev/), so it can be used as a playground for importing newly converted vocabularies.
 
-### [jskos-server]: Adding Concept Schemes <!-- omit in toc -->
+### [jskos-server]: Adding Vocabularies and Concepts <!-- omit in toc -->
 
-Most of the concept scheme data is taken from the latest BARTOC dump under `/srv/cocoda/bartoc.org/data/dumps/latest.ndjson`. To add a new concept scheme from BARTOC:
+Adding vocabularies and their concepts to one of our jskos-server instances relies on the `import-vocabularies.sh` script and the `vocabularies.txt` file.
 
-1. Add the BARTOC URI of the concept scheme to `scripts/jskos-server/scheme-uris.txt`.
+1. Add the new vocabulary to [BARTOC]. Copy its BARTOC URI (**not** the browser URL; BARTOC URIs are http only).
+2. Add a new entry in `vocabularies.txt`. The format is described there. If you have a vocabulary's concept data available in [jskos-data] as well, you can add the file's path there too.
+  - Note: You should do this locally and push to GitHub or on GitHub directly. Then run `git pull` in the cocoda-services directory (e.g. `/srv/cocoda/`).
+3. Run `./import-vocabularies.sh -g "<BARTOC URI>"`. This will import the vocabulary metadata as well as its concepts if available. If you need to reset the concepts before importing, add the `-r` flag. If you need to force the concept import without a prior reset, add the `-f` flag.
+4. If a vocabulary's concept should be served via one of our [jskos-server] instances, add an appropriate API entry to its [BARTOC] entry. For the main instance, URL should be `https://coli-conc.gbv.de/api/` and API type should be `JSKOS API`. If the vocabulary should appear in Cocoda, add `http://bartoc.org/en/node/18926` to "Listed in" in [BARTOC].
 
-2. Run `./scripts/import.sh jskos-server schemes`.
+After these steps, a vocabulary should be browsable in [BARTOC] and (if configured) in Cocoda after reloading the page.
 
-Note: The file `scripts/jskos-server/schemes.ndjson` is generated automatically from the latest BARTOC dump.
-
-In the long term, concept schemes will be loaded from BARTOC directly.
-
-If you need to add a custom concept scheme that is not (yet) in BARTOC, add the path to the `.json` or `.ndjson` file to `scripts/jskos-server/schemes.txt`.
-
-### [jskos-server]: Adding Concepts <!-- omit in toc -->
-
-The source of truth for concept data is in [jskos-data](https://github.com/gbv/jskos-data). That repository is initialized under `/srv/cocoda/jskos-data/` and will need to be updated manually. To add new concept data to jskos-server:
-
-1. Add file path to concepts file to `scripts/jskos-server/concepts.txt`.
-
-1. Run `./scripts/import.sh jskos-server concepts`. This will reimport ALL the concepts for all concept schemes, so it will take a while.
-
-<!-- TODO: How to do a partial import? -->
+In some cases, it might be required to reimport all vocabularies at once. In this case, you can run `./import-vocabularies.sh -r`. **Use with caution and check carefully!**
 
 ### [jskos-server]: Concordances <!-- omit in toc -->
 
-Originally, concordances were imported similarly to concept schemes and concepts above. However, as of 2021, the source of truth for concordances and mappings will be the jskos-server database that is hosted under https://coli-conc.gbv.de/api/. Imports of new mappings and concordances need to be performed manually for that instance:
+Originally, concordances were imported similarly to vocabularies and concepts above. However, as of 2021, the source of truth for concordances and mappings will be the jskos-server database that is hosted under https://coli-conc.gbv.de/api/. Imports of new mappings and concordances need to be performed manually for that instance:
 
 ```bash
 # go into the instance's folder
@@ -122,7 +114,7 @@ Cron jobs currently need to be configurated manually.
 20 * * * * cd /srv/cocoda/kenom-mappings; make stats
 
 # nightly import of ccmapper recommendations (note: add FTP credentials!)
-00 05 * * * FTP_USER=<ftpuser> FTP_PASS=<ftppass> FTP_HOST=<ftphost> FILE=generated SERVER_PATH=/srv/cocoda/jskos-server-ccmapper SERVER_RESET=yes /srv/cocoda/scripts/import.sh jskos-server-ccmapper mappings > /srv/cocoda/logs/jskos-server-ccmapper_mappings.log
+00 05 * * * FTP_USER=<ftpuser> FTP_PASS=<ftppass> FTP_HOST=<ftphost> FILE=generated SERVER_PATH=/srv/cocoda/jskos-server-ccmapper SERVER_RESET=yes /srv/cocoda/scripts/jskos-server-ccmapper/import.sh  mappings > /srv/cocoda/logs/jskos-server-ccmapper_mappings.log
 
 # nightly dump of BARTOC.org
 00 04 * * * cd /srv/cocoda/bartoc.org; npm run dump update

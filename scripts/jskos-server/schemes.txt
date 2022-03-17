@@ -1,2 +1,0 @@
-/srv/cocoda/scripts/jskos-server/schemes.ndjson
-/srv/cocoda/jskos-data/msc2020/msc2020-scheme.json
