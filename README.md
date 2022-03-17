@@ -78,7 +78,7 @@ Adding vocabularies and their concepts to one of our jskos-server instances reli
 
 1. Add the new vocabulary to [BARTOC]. Copy its BARTOC URI (**not** the browser URL; BARTOC URIs are http only).
 2. Add a new entry in `vocabularies.txt`. The format is described there. If you have a vocabulary's concept data available in [jskos-data] as well, you can add the file's path there too.
-  - Note: You should do this locally and push to GitHub or on GitHub directly. Then run `git pull` in the cocoda-services directory (e.g. `/srv/cocoda/`).
+    - Note: You should do this locally and push to GitHub or on GitHub directly. Then run `git pull` in the cocoda-services directory (e.g. `/srv/cocoda/`).
 3. Run `./import-vocabularies.sh -g "<BARTOC URI>"`. This will import the vocabulary metadata as well as its concepts if available. If you need to reset the concepts before importing, add the `-r` flag. If you need to force the concept import without a prior reset, add the `-f` flag.
 4. If a vocabulary's concept should be served via one of our [jskos-server] instances, add an appropriate API entry to its [BARTOC] entry. For the main instance, URL should be `https://coli-conc.gbv.de/api/` and API type should be `JSKOS API`. If the vocabulary should appear in Cocoda, add `http://bartoc.org/en/node/18926` to "Listed in" in [BARTOC].
 
