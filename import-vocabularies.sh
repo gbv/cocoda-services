@@ -18,6 +18,7 @@ Options:
   -f    Force import even if vocabulary data already exists
   -r    Reset a vocabulary's concept data before importing
   -g    A grep filter used on vocabularies.txt
+  -c    Only check whether data has been imported
 
 Note that -r currently only works if the scheme is given as a BARTOC URI.
 
@@ -30,12 +31,17 @@ Examples:
 }
 
 DATAFILE="vocabularies.txt"
+CHECK="false"
 FORCE="false"
 RESET="false"
 FILTER=""
 
-while getopts 'd:frg:h' flag; do
+while getopts 'cd:frg:h' flag; do
   case "${flag}" in
+    c) CHECK='true'
+       FORCE='false'
+       RESET='false'
+       ;;
     d) DATAFILE="${OPTARG}" ;;
     f) FORCE='true' ;;
     r) RESET='true' ;;
@@ -126,9 +132,16 @@ function handler {
     SCHEME_URI=$SCHEME
     SCHEME=https://bartoc.org/api/data?uri=$SCHEME
   fi
+
+  if [[ "$CHECK" == "true" ]]; then
+    warn "Not implemented yet"
+    return
+  fi
+
   $JSKOS_SERVER/bin/import.js scheme $SCHEME
   didSucceed $? "Vocabulary metadata was imported into jskos-server." "Import of vocabulary metadata into jskos-server failed."
   echo
+
 
   # TODO: Check if concept data exists already; if yes, stop here.
   if [[ "$FORCE" == "false" ]] && [[ "$RESET" == "false" ]] && [[ ! -z $SCHEME_URI ]]
@@ -152,4 +165,4 @@ function handler {
 }
 
 export -f handler
-grep -o '^[^#]*' $DATAFILE | grep "$FILTER" | FORCE=$FORCE RESET=$RESET xargs -L 1 bash -c 'handler "$@"'
+grep -o '^[^#]*' $DATAFILE | grep "$FILTER" | FORCE=$FORCE RESET=$RESET CHECK=$CHECK xargs -L 1 bash -c 'handler "$@"'
