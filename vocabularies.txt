@@ -31,6 +31,7 @@ jskos-server    http://bartoc.org/en/node/20404     jskos-data/retrohab/retrohab
 jskos-server    http://bartoc.org/en/node/20405     jskos-data/gessner/gessner-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/20406     jskos-data/brunfels/brunfels-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/20407     jskos-data/thuana/thuana-concepts.ndjson
+jskos-server	http://bartoc.org/en/node/20050	    jskos-data/fkdigbib/fkdigbib-concepts.ndjson
 
 # DDC German
 # TODO: Use jskos-data path if possible
