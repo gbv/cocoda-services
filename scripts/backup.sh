@@ -5,6 +5,7 @@ repo=/srv/cocoda/mongobackup
 /usr/bin/mongodump --quiet --db cocoda_api_kenom --collection mappings --query '{ "uri": { "$exists": true } }' --out $repo
 /usr/bin/mongodump --quiet --db cocoda_api --collection mappings --query '{ "uri": { "$exists": true } }' --out $repo
 /usr/bin/mongodump --quiet --db cocoda_api --collection concordances --out $repo
+/usr/bin/mongodump --quiet --db cocoda_api --collection annotations --out $repo
 
 # convert bson to json
 for file in $repo/*/*.bson
