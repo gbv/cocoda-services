@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
 repo=/srv/cocoda/mongobackup
-/usr/bin/mongodump --quiet --db jskos-server-fso --collection mappings --query '{ uri: { $exists: true }, partOf: { $exists: false } }' --out $repo
-/usr/bin/mongodump --quiet --db cocoda_api_kenom --collection mappings --query '{ uri: { $exists: true }, partOf: { $exists: false } }' --out $repo
-/usr/bin/mongodump --quiet --db cocoda_api --collection mappings --query '{ uri: { $exists: true }, partOf: { $exists: false } }' --out $repo
+/usr/bin/mongodump --quiet --db jskos-server-fso --collection mappings --query '{ "uri": { "$exists": true } }' --out $repo
+/usr/bin/mongodump --quiet --db cocoda_api_kenom --collection mappings --query '{ "uri": { "$exists": true } }' --out $repo
+/usr/bin/mongodump --quiet --db cocoda_api --collection mappings --query '{ "uri": { "$exists": true } }' --out $repo
 /usr/bin/mongodump --quiet --db cocoda_api --collection concordances --out $repo
 
 # convert bson to json
