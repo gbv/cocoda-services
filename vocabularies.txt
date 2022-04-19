@@ -33,6 +33,7 @@ jskos-server    http://bartoc.org/en/node/20406     jskos-data/brunfels/brunfels
 jskos-server    http://bartoc.org/en/node/20407     jskos-data/thuana/thuana-concepts.ndjson
 jskos-server	http://bartoc.org/en/node/20050	    jskos-data/fkdigbib/fkdigbib-concepts.ndjson
 jskos-server	http://bartoc.org/en/node/1051	    jskos-data/ssd/ssd-concepts.ndjson
+jskos-server	http://bartoc.org/en/node/743	    jskos-data/essb/essb-concepts.ndjson
 
 # DDC German
 # TODO: Use jskos-data path if possible
