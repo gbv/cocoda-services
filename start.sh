@@ -11,17 +11,25 @@ echo "Start service $1"
 cd $1
 
 ECOSYSTEM=ecosystem.config.json
-[[ -f $ECOSYSTEM ]] || error "Missing file $ECOSYSTEM" 
 
-# add or adjust service name
-SCRIPT="console.log(JSON.stringify(Object.assign(\
-JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'})))"
+if [[ -f $ECOSYSTEM ]]; then
+  echo "Using ecosystem file $ECOSYSTEM"
 
-ECOSYSTEM=ecosystem.config.renamed.json
-node -e "$SCRIPT" > $ECOSYSTEM
+  # add or adjust service name
+  SCRIPT="console.log(JSON.stringify(Object.assign(\
+  JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'})))"
 
-# reload or start
-pm2 reload $ECOSYSTEM || pm2 start $ECOSYSTEM
+  ECOSYSTEM=ecosystem.config.renamed.json
+  node -e "$SCRIPT" > $ECOSYSTEM
+
+  # reload or start
+  pm2 reload $ECOSYSTEM || pm2 start $ECOSYSTEM
+else
+  NAME=$(basename $1)
+  echo "Assuming pm2 process name to be $NAME"
+
+  pm2 reload $NAME || pm2 start $NAME
+fi
 
 # show status
 pm2 list -m | awk "\$1==\"+---\" {P=\$2==\"$1\"} P {print}"
