@@ -61,13 +61,18 @@ else
   exit 1
 fi
 
+echo "- Adjusting JSON file..."
+jq '[.[] | .["mappingRelevance"] = ((._score | tonumber + 1) | log10) / 5.6 | del(._score)]' $TEMP_PATH/$FILE.json > $TEMP_PATH/$FILE.adjusted.json
+
 # Run jskos-server import script
 echo "- Running jskos-server import script..."
 if [ ! -z "$SERVER_RESET" ]; then
   echo "  - Resetting server..."
-  $SERVER_PATH/bin/import.js --reset --indexes mappings
+  yes | $SERVER_PATH/bin/reset.js -t mappings
+  $SERVER_PATH/bin/import.js --indexes mappings
 fi
-$SERVER_PATH/bin/import.js mappings $TEMP_PATH/$FILE.json
+echo "  - Importing data..."
+$SERVER_PATH/bin/import.js mappings $TEMP_PATH/$FILE.adjusted.json
 
 # Delete files
 echo "- Deleting files..."
