@@ -15,6 +15,7 @@ jskos-server    https://bartoc.org/api/voc?partOf=http%3A%2F%2Fbartoc.org%2Fen%2
 jskos-server    http://bartoc.org/en/node/520       jskos-data/dfg/dfg-2020.concepts.ndjson
 jskos-server    http://bartoc.org/en/node/730       jskos-data/bos/bos-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/742       jskos-data/oesoeb/oesoeb-concepts.ndjson
+jskos-server	http://bartoc.org/en/node/1339	    jskos-data/htwg/htwg-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/1042      jskos-data/fos/fos-concepts.ndjson
 jskos-server    http://bartoc.org/en/node/1043      jskos-data/thema/thema-concepts-1.4.ndjson
 jskos-server    http://bartoc.org/en/node/1050      jskos-data/skj/skj-concepts.ndjson
@@ -71,9 +72,7 @@ jskos-server    http://bartoc.org/en/node/20049     jskos-data/sdnb/sdnb-concept
 jskos-server    http://bartoc.org/en/node/18497
 
 ### RVK ###
-# TODO: Use jskos-data paths if possible
-
-jskos-server-rvk  http://bartoc.org/en/node/533 /home/stefanp/rvk/rvk_only_A.ndjson /home/stefanp/rvk/rvk_only_B.ndjson /home/stefanp/rvk/rvk_only_C.ndjson /home/stefanp/rvk/rvk_only_D.ndjson /home/stefanp/rvk/rvk_only_E.ndjson /home/stefanp/rvk/rvk_only_F.ndjson /home/stefanp/rvk/rvk_only_G.ndjson /home/stefanp/rvk/rvk_only_H.ndjson /home/stefanp/rvk/rvk_only_I.ndjson /home/stefanp/rvk/rvk_only_J.ndjson /home/stefanp/rvk/rvk_only_K.ndjson /home/stefanp/rvk/rvk_only_L.ndjson /home/stefanp/rvk/rvk_only_M.ndjson /home/stefanp/rvk/rvk_only_N.ndjson /home/stefanp/rvk/rvk_only_O.ndjson /home/stefanp/rvk/rvk_only_P.ndjson /home/stefanp/rvk/rvk_only_Q.ndjson /home/stefanp/rvk/rvk_only_R.ndjson /home/stefanp/rvk/rvk_only_S.ndjson /home/stefanp/rvk/rvk_only_T.ndjson /home/stefanp/rvk/rvk_only_U.ndjson /home/stefanp/rvk/rvk_only_V.ndjson /home/stefanp/rvk/rvk_only_W.ndjson /home/stefanp/rvk/rvk_only_X.ndjson /home/stefanp/rvk/rvk_only_Y.ndjson /home/stefanp/rvk/rvk_only_Z.ndjson
+jskos-server-rvk  http://bartoc.org/en/node/533     jskos-data/rvk/2022_3/rvko_2022_3.ndjson
 
 ### Dev ###
 
