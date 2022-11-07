@@ -27,7 +27,7 @@ coli-rich-scripts       https://github.com/gbv/coli-rich-scripts.git            
 # other services
 login-server            https://github.com/gbv/login-server.git                         master
 wikidata-jskos          https://github.com/gbv/wikidata-jskos.git                       master
-occurrences-api         https://github.com/gbv/occurrences-api.git                      master
+occurrences-api         https://github.com/gbv/occurrences-api.git                      dev
 nomisma-reconciliation  https://github.com/gbv/nomisma-reconciliation.git               master
 github-webhook-handler  https://github.com/gbv/github-webhook-handler.git               master
 coli-ana                https://github.com/gbv/coli-ana.git                             main
