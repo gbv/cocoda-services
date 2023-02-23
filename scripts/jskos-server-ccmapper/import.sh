@@ -30,9 +30,13 @@ if [ ! -f $SERVER_PATH/bin/import.js ]; then
   exit 1
 fi
 
+# Set script path
+SCRIPT_PATH=$( dirname -- "$( readlink -f -- "$0"; )" )
+
 echo "FILE: $FILE"
 echo "TEMP_PATH: $TEMP_PATH"
 echo "SERVER_PATH: $SERVER_PATH"
+echo "SCRIPT_PATH: $SCRIPT_PATH"
 echo "If any errors occur, please consult the comments at the top of this script."
 
 # Download newest file
@@ -62,7 +66,21 @@ else
 fi
 
 echo "- Adjusting JSON file..."
-jq '[.[] | .["mappingRelevance"] = ((._score | tonumber + 1) | log10) / 5.6 | del(._score)]' $TEMP_PATH/$FILE.json > $TEMP_PATH/$FILE.adjusted.json
+# First, load environment for Node.js via fnm
+export PATH="/srv/cocoda/.local/share/fnm:$PATH"
+eval "`fnm env`"
+# TODO: zx --install can be removed after update to Ubuntu 20.04 or later. (Requires coreutils >=8.30, see `apt-cache policy coreutils`.)
+zx --install $SCRIPT_PATH/transform.mjs $TEMP_PATH/$FILE.json $TEMP_PATH/$FILE.adjusted.ndjson
+
+# Check whether download succeeded
+if [ $? -eq 0 ]; then
+  echo "- Adjustment succeeded."
+else
+  echo "Error: Adjustment failed, exiting."
+  rm $TEMP_PATH/$FILE.json
+  rm $TEMP_PATH/$FILE.adjusted.ndjson
+  exit 1
+fi
 
 # Run jskos-server import script
 echo "- Running jskos-server import script..."
@@ -72,7 +90,7 @@ if [ ! -z "$SERVER_RESET" ]; then
   $SERVER_PATH/bin/import.js --indexes mappings
 fi
 echo "  - Importing data..."
-$SERVER_PATH/bin/import.js mappings $TEMP_PATH/$FILE.adjusted.json
+$SERVER_PATH/bin/import.js mappings $TEMP_PATH/$FILE.adjusted.ndjson
 
 # Delete files
 echo "- Deleting files..."
