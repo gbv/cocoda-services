@@ -5,6 +5,16 @@ function usage {
   echo "Pulls updates via git and restarts service"
 }
 
+# Handle script is called from different directory -> allows calling the script without parameter if inside a service directory
+# TODO: Maybe transfer this to start.sh and install.sh as well?
+SCRIPT_DIR=$(dirname "$0")
+if [[ $SCRIPT_DIR != "." ]]; then
+  NAME="${1:-$(basename "$(pwd)")}"
+  cd $SCRIPT_DIR
+  ./update.sh "$NAME"
+  exit
+fi
+
 . utils.sh
 
 [[ -d "$1/.git" ]] || error "missing $1/.git"
