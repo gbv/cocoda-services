@@ -13,13 +13,13 @@ cd $1
 if [[ -f "package-lock.json" ]]; then
 
   echo "Detected Node service (via package-lock.json)"
-  npm ci
+  npm ci --force
   npm run build || echo "no build script found"
 
 elif [[ -f "package.json" ]]; then
   
   echo "Detected Node service"
-  npm install --no-package-lock
+  npm i --force --no-package-lock
   npm run build || echo "no build script found"
 
 elif [[ -f "cpanfile" ]]; then
