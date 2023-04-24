@@ -10,16 +10,19 @@ function usage {
 echo "Start service $1"
 cd $1
 
-ECOSYSTEM=ecosystem.example.json
+ECOSYSTEM_EXAMPLE=ecosystem.example.json
+ECOSYSTEM=ecosystem.config.json
 
 if [[ -f $ECOSYSTEM ]]; then
-  echo "Using ecosystem file $ECOSYSTEM"
+  echo "Using ecosystem file $ECOSYSTEM without adjustments"
+  pm2 reload $ECOSYSTEM || pm2 start $ECOSYSTEM
+elif [[ -f $ECOSYSTEM_EXAMPLE ]]; then
+  echo "Using and adjusting ecosystem file $ECOSYSTEM_EXAMPLE"
 
   # add or adjust service name
   SCRIPT="console.log(JSON.stringify(Object.assign(\
-  JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'}),null,2))"
+  JSON.parse(require('fs').readFileSync('$ECOSYSTEM_EXAMPLE')),{name:'$1'}),null,2))"
 
-  ECOSYSTEM=ecosystem.config.json
   node -e "$SCRIPT" > $ECOSYSTEM
 
   # reload or start
