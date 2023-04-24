@@ -10,7 +10,7 @@ function usage {
 echo "Start service $1"
 cd $1
 
-ECOSYSTEM=ecosystem.config.json
+ECOSYSTEM=ecosystem.example.json
 
 if [[ -f $ECOSYSTEM ]]; then
   echo "Using ecosystem file $ECOSYSTEM"
@@ -19,7 +19,7 @@ if [[ -f $ECOSYSTEM ]]; then
   SCRIPT="console.log(JSON.stringify(Object.assign(\
   JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'})))"
 
-  ECOSYSTEM=ecosystem.config.renamed.json
+  ECOSYSTEM=ecosystem.config.json
   node -e "$SCRIPT" > $ECOSYSTEM
 
   # reload or start
