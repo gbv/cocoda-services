@@ -17,7 +17,7 @@ if [[ -f $ECOSYSTEM ]]; then
 
   # add or adjust service name
   SCRIPT="console.log(JSON.stringify(Object.assign(\
-  JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'})))"
+  JSON.parse(require('fs').readFileSync('$ECOSYSTEM')),{name:'$1'}),null,2))"
 
   ECOSYSTEM=ecosystem.config.json
   node -e "$SCRIPT" > $ECOSYSTEM
