@@ -10,16 +10,19 @@ function usage {
 echo "Initialize dependencies of $1"
 cd $1
 
+
+# "NODE_ENV=development" is necessary because we want npm ci to include dev dependencies as they might be needed for the build.
+
 if [[ -f "package-lock.json" ]]; then
 
   echo "Detected Node service (via package-lock.json)"
-  npm ci --force
+  NODE_ENV=development npm ci --force
   npm run build || echo "no build script found"
 
 elif [[ -f "package.json" ]]; then
   
   echo "Detected Node service"
-  npm i --force --no-package-lock
+  NODE_ENV=development npm i --force --no-package-lock
   npm run build || echo "no build script found"
 
 elif [[ -f "cpanfile" ]]; then
