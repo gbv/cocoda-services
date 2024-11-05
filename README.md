@@ -1,4 +1,6 @@
-# cocoda backend services
+# cocoda backend services (deprecated)
+
+**Replaced by https://github.com/gbv/coli-conc-server**
 
 > backend services used in [project coli-conc](https://coli-conc.gbv.de/)
 
