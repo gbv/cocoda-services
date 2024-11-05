@@ -119,9 +119,6 @@ Cron jobs currently need to be configurated manually.
 # nightly dump of BARTOC.org
 00 04 * * * cd /srv/cocoda/bartoc.org; npm run dump update
 10 04 * * * cd jskos-server-bartoc-dev/; npm run import schemes ../bartoc.org/data/dumps/latest.ndjson
-
-# nightly stats of coli-rich
-05 03 * * * cd /srv/cocoda/coli-rich/rvk2bk; ./stats.sh >> stats.ndjson
 ```
 
 ## Automatic Deployment
